@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GigEV | Gig Worker EV Financial Intelligence</title>
+<style>
+:root{--bg:#eef4ef;--card:#fff;--ink:#12261b;--mut:#5b6e63;--g:#1f7a4d;--gd:#0f3d29;--gl:#d9efe2;--am:#d98a00;--rd:#c23b32;--bd:#d3e0d7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]){}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1712;--card:#15231b;--ink:#e6f1ea;--mut:#9bb0a3;--g:#3fbf80;--gd:#e6f1ea;--gl:#1d3a2b;--bd:#264535}}
+:root[data-theme="dark"]{--bg:#0d1712;--card:#15231b;--ink:#e6f1ea;--mut:#9bb0a3;--g:#3fbf80;--gd:#e6f1ea;--gl:#1d3a2b;--bd:#264535}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--bd);padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{width:38px;height:38px;border-radius:10px;background:var(--g);color:#fff;display:grid;place-items:center;font-size:20px}
+header h1{margin:0;font-size:20px;line-height:1.1}header small{color:var(--mut);display:block;font-size:12px}
+.city{margin-left:auto;font-size:13px;color:var(--mut)}.city select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:4px 6px}
+nav{display:flex;gap:6px;padding:10px 16px;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--bd)}
+nav button{white-space:nowrap;border:1px solid var(--bd);background:var(--bg);color:var(--ink);padding:8px 14px;border-radius:20px;font:inherit;cursor:pointer}
+nav button.on{background:var(--g);color:#fff;border-color:var(--g)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+section{display:none}section.on{display:block}
+.hero{background:var(--gd);color:#fff;border-radius:16px;padding:22px;margin-bottom:16px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:#14402b;color:#fff}}
+.hero h2{margin:0 0 6px;font-size:24px;line-height:1.2}.hero p{margin:0;opacity:.85}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{margin:0 0 8px;font-size:17px}
+textarea,input,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:10px}
+textarea{min-height:84px;resize:vertical}
+.btn{background:var(--g);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn.alt{background:var(--gl);color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 140px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.chip{border:1px solid var(--bd);background:var(--bg);color:var(--ink);padding:5px 10px;border-radius:16px;font:inherit;font-size:13px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.big{font-size:28px;font-weight:700;line-height:1.1}.lbl{color:var(--mut);font-size:13px}
+.win{border:2px solid var(--g)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--bd)}
+.scroll{overflow-x:auto}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.g{background:#2ea36a}.a{background:var(--am)}.r{background:var(--rd)}
+.note{font-size:12.5px;color:var(--mut)}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:10px;background:var(--gl);margin-right:4px}
+.tag.x{background:#f6dcda;color:#7a1f19}
+#chat{max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.m{padding:9px 12px;border-radius:12px;max-width:88%;white-space:pre-wrap}.m.u{background:var(--g);color:#fff;align-self:flex-end}.m.b{background:var(--gl);align-self:flex-start}
+canvas{width:100%;max-width:420px;border-radius:12px;border:1px solid var(--bd);display:block}
+:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.ban{background:var(--gd);color:#fff;text-align:center;font-size:12px;padding:6px 10px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .ban{background:#14402b}}
+.bdg{font-size:11px;font-weight:600;background:var(--gl);color:var(--ink);padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:6px}
+.menu{border:1px solid var(--g);background:none;color:var(--g);border-radius:10px;font-size:20px;width:44px;height:40px;cursor:pointer}
+#drawer{background:var(--card);border-bottom:1px solid var(--bd);padding:8px 16px;display:grid;gap:4px}#drawer[hidden]{display:none}
+#drawer button{text-align:left;border:0;background:none;color:var(--ink);font:inherit;padding:11px 8px;border-radius:8px;cursor:pointer}#drawer button:hover{background:var(--gl)}
+#drawer i{float:right;font-style:normal;font-size:12px;background:var(--gl);padding:1px 8px;border-radius:10px}
+.chip.on{background:var(--g);color:#fff;border-color:var(--g)}input[type=range]{padding:0}
+footer{background:#0f1f17;color:#cfe0d6;padding:24px 16px;margin-top:20px;font-size:13px}footer .in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+footer h4{margin:0 0 6px;color:#fff}footer button{display:block;background:none;border:0;color:#9fd8b9;font:inherit;padding:3px 0;cursor:pointer}
+.opt{text-align:left;border:2px solid var(--bd);background:var(--card);color:var(--ink);border-radius:12px;padding:12px;font:inherit;cursor:pointer}
+.opt.sel{border-color:var(--g);background:var(--gl)}.opt b{display:block;margin-bottom:2px}
+.sl{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}details.card summary{cursor:pointer;font-weight:600}
+</style></head><body>
+<div class="ban">Reference data checked 11 Oct 2026. Fuel and power rates are editable assumptions, not live prices.</div>
+<header><div class="logo">⚡</div><div><h1>GigEV <span class="bdg">Revitalize Mobility</span></h1><small>Gig Worker EV Financial Intelligence Platform</small></div>
+<div class="city">Benchmark city<br><select id="city"><option>Hyderabad</option><option>Warangal</option><option>Bengaluru</option><option>Delhi</option></select></div>
+<button class="btn" id="hcalc">Calculate savings</button><button class="menu" id="mb" aria-label="Menu" aria-expanded="false">☰</button></header>
+<div id="drawer" hidden><button data-t="home">Home</button><button data-t="calc">EV Savings Calculator <i>Core</i></button><button data-t="sub">Subsidy Explorer</button><button data-t="fleet">Fleet Dashboard <i>Demo</i></button><button data-t="adv">AI Financial Advisor <i>AI</i></button><button data-t="about">About and methodology</button></div>
+<main>
+<section id="home" class="on">
+<div class="hero"><h2>Know exactly what an EV saves you</h2><p>Real running costs, government subsidies and financing guidance for delivery riders and fleet owners, in rupees.</p>
+<div class="row" style="margin-top:14px"><button class="btn alt" data-go="calc">Full EV savings calculator</button><button class="btn alt" data-go="sub">Explore subsidies</button><button class="btn alt" data-go="adv">Ask AI advisor</button></div></div>
+<div class="card"><h3>How much extra take-home pay can an EV give you?</h3><div class="chips" id="plats"></div>
+<label class="note">Daily distance: <b id="kmv">85</b> km a day<input id="qk" type="range" min="20" max="160" value="85"></label>
+<div class="note row"><span>20 part-time</span><span>85 standard shift</span><span>160 long shift</span></div>
+<div class="lbl" style="margin-top:8px">Projected monthly fuel and power savings (26 days)</div><div class="big" id="qs"></div><p class="note" id="qd"></p><button class="btn alt" id="qt">Fine-tune in the calculator</button></div>
+<div class="grid"><div class="card"><span class="tag">For delivery riders</span><h3>Food, grocery and parcel partners</h3><p>Compare your petrol bill with electric running costs and see how fast a retrofit pays back.</p><button class="btn" data-go="calc">Calculate your route savings</button></div>
+<div class="card"><span class="tag">For fleet owners</span><h3>Micro-fleets of 5 to 50 vehicles</h3><p>Track battery health, margin per vehicle and vehicles due for service.</p><button class="btn" data-go="fleet">Open the fleet dashboard</button></div></div>
+<div class="card"><h3>How the 3 delivery models compare</h3><p class="note" id="cmpn"></p><div class="grid" id="cmp"></div></div></section>
+<section id="calc">
+<div class="hero"><h2>EV savings and total cost calculator</h2><p>Choose your options below. Everything is in rupees and every rate can be edited.</p></div>
+<div class="card"><h3>1. City and delivery partner</h3><div class="row"><label class="note">Operating city<select id="city2"><option>Hyderabad</option><option>Warangal</option><option>Bengaluru</option><option>Delhi</option></select></label>
+<label class="note">Delivery platform<select id="cp"><option>Zomato</option><option>Swiggy</option><option>Zepto</option><option>Blinkit</option><option>Shadowfax</option><option>Porter</option></select></label></div></div>
+<div class="card"><h3>2. Vehicle segment and model</h3><div class="grid" id="veh" role="radiogroup"></div>
+<p class="note" style="margin:12px 0 4px">Financing and ownership model</p><div class="chips" id="finb"><button class="chip" data-f="cash">Full cash buy</button><button class="chip" data-f="loan">Loan EMI (NBFC)</button></div></div>
+<div class="card"><h3>3. Shift distance and usage pattern</h3>
+<label class="note">Daily riding distance <input id="ckn" type="number" min="1" max="400" style="width:90px;display:inline-block;margin-left:8px"> km a day<input id="ck" type="range" min="10" max="200" value="85"></label>
+<div class="sl"><span>20 hyper-local</span><span>85 standard shift</span><span>150 dual shift</span><span>200 high volume</span></div>
+<label class="note" style="display:block;margin-top:12px">Working days a month: <b id="cdv">26</b><input id="cd" type="range" min="18" max="30" value="26"></label>
+<div class="sl"><span>18 casual</span><span>26 full time</span><span>30 non-stop</span></div>
+<label class="note" style="display:block;margin-top:12px">Daily petrol spend in Rs (optional)<input id="cs" type="number" placeholder="Leave blank to estimate from distance"></label></div>
+<div class="card"><details open><summary>4. Detailed parameters and loan terms</summary><div class="grid" style="margin-top:10px">
+<label class="note">Current petrol bike mileage (km/L)<input id="mi" type="number" value="46"></label>
+<label class="note">Petrol price (Rs/L)<input id="pp" type="number" value="100" step="0.5"></label>
+<label class="note">Electricity tariff (Rs/kWh)<input id="el" type="number" value="8" step="0.1"></label>
+<label class="note">EV energy use (Wh/km)<input id="wh" type="number" value="22"></label>
+<label class="note">Vehicle or retrofit cost (Rs)<input id="rc" type="number" value="35000"></label>
+<label class="note">Applied subsidy (Rs)<input id="sb" type="number" value="0"></label>
+<label class="note">Down payment (Rs, loan only)<input id="dp" type="number" value="20000"></label>
+<label class="note">Tenure (loan only)<select id="tn"><option value="12">12 months</option><option value="24">24 months</option><option value="36" selected>36 months</option><option value="48">48 months</option></select></label>
+<label class="note">Interest rate (% a year, loan only)<input id="ir" type="number" value="13.5" step="0.5"></label></div>
+<p class="note">PM e-DRIVE is Rs. 2,500 per kWh of battery, capped at Rs. 5,000, for new electric two-wheelers. It is not confirmed for retrofits, so the retrofit default is Rs. 0.</p></details></div>
+<div class="row"><button class="btn" id="go">Calculate savings</button><button class="btn alt" id="rst">Reset defaults</button></div><p id="err" class="note" role="alert"></p>
+<details class="card"><summary>Prefer typing? Describe your day in words</summary><textarea id="txt" style="margin-top:10px">I ride 80 km a day for Swiggy on a 110cc bike and spend Rs. 180 on petrol</textarea>
+<div class="chips"><button class="chip" data-ex="I ride 120 km a day for Zomato on a 125cc bike and spend Rs. 260 on petrol">120 km, Rs. 260</button><button class="chip" data-ex="I do 60 km daily for Zepto, petrol costs me Rs. 130 a day">60 km, Rs. 130</button></div>
+<button class="btn alt" id="fillt">Fill the form from my sentence</button></details>
+<div id="res"></div></section>
+
+<section id="sub"><div class="hero"><h2>Subsidies you may claim</h2><p>Plain-language summary of schemes relevant to Telangana riders. Confirm amounts with the official source before you buy.</p></div>
+<div class="card"><h3>Retrofit or new bike?</h3><p>The brief is about retrofitting a petrol bike. PM e-DRIVE and the Telangana waiver are written for new electric vehicles registered in your name. Ask the dealer or RTO whether a retrofitted bike qualifies before you count on either one.</p></div>
+<div class="card"><h3>PM e-DRIVE estimator</h3><div class="row"><label class="note">Battery capacity (kWh)<input id="kwh" type="number" value="2.1" step="0.1"></label><label class="note">Ex-factory price (Rs)<input id="exp" type="number" value="100000"></label></div><p id="est" class="big"></p><p id="tgd" class="note"></p></div>
+<div class="card"><div class="row"><label class="note">State or level<select id="sf"><option value="">All India (central and state)</option><option>Central</option><option>Telangana</option><option>Warangal district</option></select></label><label class="note">Search scheme<input id="ss" placeholder="e.g. PM e-DRIVE, road tax"></label></div></div>
+<div id="subs"></div><p class="note">Figures checked against government notifications and news reports on 11 Oct 2026. Schemes are fund-limited and change often, so confirm on the official link before you buy.</p></section>
+
+<section id="fleet"><div class="hero"><h2>Fleet dashboard</h2><p>Demo data for an 8-vehicle swap-enabled fleet. Battery health: green above 80%, amber 60 to 80%, red below 60%.</p></div>
+<div class="row" style="margin-bottom:12px"><button class="btn" id="addv">Add vehicle</button><button class="btn alt" id="rstv">Reset to 8 vehicles</button></div><div class="grid" id="fsum"></div><div class="card scroll"><table id="ft"></table></div></section>
+
+<section id="adv"><div class="hero"><h2>AI financial advisor</h2><p>Ask about savings, payback, subsidies or swap vs fixed. Answers use your latest calculation.</p></div>
+<div class="card"><h3>Your profile</h3><div class="row"><label class="note">Platform<select id="pf"><option>Zomato</option><option>Swiggy</option><option>Zepto</option><option>Blinkit</option><option>Shadowfax</option><option>Porter</option></select></label>
+<label class="note">Daily distance: <b id="pkv">85</b> km<input id="pk" type="range" min="20" max="160" value="85"></label><label class="note">Financing<select id="fin"><option>Pay in cash</option><option>Monthly EMI</option></select></label></div></div>
+<div class="card"><div id="chat" aria-live="polite"><div class="m b">Namaste! I am the Revitalize EV advisor. Set your profile above, then ask about payback, subsidies, swap vs fixed or CO2. I answer with your numbers.</div></div>
+<div class="chips"><button class="chip" data-q="How long to pay back?">Payback time</button><button class="chip" data-q="Swap or fixed battery?">Swap or fixed?</button><button class="chip" data-q="Which subsidies can I get?">Subsidies</button><button class="chip" data-q="How much CO2 do I save?">CO2 saved</button></div>
+<div class="row"><input id="q" placeholder="Ask a question" aria-label="Ask a question"><button class="btn" id="ask" style="flex:0 0 auto">Ask</button></div>
+<p class="note">Rule-based answers computed from your numbers. The Gemini-powered version runs on the server build in the repository.</p></div></section>
+<section id="about"><div class="hero"><h2>About and methodology</h2><p>GigEV by Revitalize Mobility shows riders and fleet owners whether going electric pays.</p></div>
+<div class="card"><h3>How we calculate</h3><p>Monthly km = daily km x 26 working days.<br>Petrol cost per km = petrol price / mileage, or your stated daily spend.<br>Fixed battery cost per km = tariff x (Wh/km / 1000).<br>Swap cost = km / 96 x Rs. 40 (48V 44Ah battery).<br>Savings = petrol cost minus electric cost.<br>Payback = retrofit cost (Rs. 35,000) / monthly savings.<br>CO2 = petrol litres x 2.31 kg minus kWh x 0.71 kg.</p><p class="note">All maths runs in code, not in an AI model.</p></div>
+<div class="card"><h3>Sources and limits</h3><p>PM e-DRIVE terms come from the Ministry of Heavy Industries notification reported in Aug 2026. The Telangana waiver comes from the state government order. Fuel price, tariff, Wh/km and mileage are editable assumptions. Fleet figures are demo data. Whether a retrofitted bike qualifies for subsidies is unconfirmed.</p></div></section>
+</main>
+<footer><div class="in"><div><h4>⚡ GigEV by Revitalize Mobility</h4><p>Financial intelligence for gig delivery riders, commercial EV drivers and micro-fleets.</p></div>
+<div><h4>Platform modules</h4><button data-go="calc">EV savings calculator</button><button data-go="sub">Subsidy explorer</button><button data-go="fleet">Fleet dashboard (demo)</button><button data-go="adv">AI financial advisor</button><button data-go="about">About and methodology</button></div>
+<div><h4>Data transparency</h4><p>Subsidies: MHI notification, Telangana Transport Dept<br>Fuel and tariff: editable assumptions<br>Currency: Indian rupees</p></div></div></footer>
+<script>
+const $=id=>document.getElementById(id),inr=n=>"Rs. "+Math.round(n).toLocaleString("en-IN");
+let S=null;
+function go(t){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===t));$("drawer").hidden=true;$("mb").setAttribute("aria-expanded","false");window.scrollTo(0,0)}
+document.querySelectorAll("[data-t],[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.t||b.dataset.go));
+$("mb").onclick=()=>{const h=$("drawer").hidden;$("drawer").hidden=!h;$("mb").setAttribute("aria-expanded",String(h))};
+$("hcalc").onclick=()=>{go("calc");calc()};
+document.querySelectorAll("[data-ex]").forEach(c=>c.onclick=()=>{$("txt").value=c.dataset.ex;fromText()});
+let fin="cash",vm="rt";
+const VEH=[{id:"rt",n:"Retrofit my petrol bike",d:"Convert your existing 110cc bike with an electric kit. Works with fixed or swap batteries.",p:35000,wh:22,sb:0,fin:"cash"},
+{id:"sc",n:"High-speed electric scooter (Ather / Ola / TVS)",d:"Fixed lithium battery, range around 90 to 120 km. Estimated price, confirm with the dealer.",p:115000,wh:33,sb:5000,fin:"loan"},
+{id:"sw",n:"Swappable-battery 2W (Zypp / Battery Smart / Yulu)",d:"Quick battery swap at hub stations, no charging wait. Estimated price, confirm with the provider.",p:75000,wh:22,sb:0,fin:"loan"}];
+function setFin(x){fin=x;document.querySelectorAll("#finb .chip").forEach(c=>c.classList.toggle("on",c.dataset.f===x))}
+function selVeh(id){const v=VEH.find(x=>x.id===id);vm=id;$("rc").value=v.p;$("wh").value=v.wh;$("sb").value=v.sb;setFin(v.fin);document.querySelectorAll("#veh .opt").forEach(b=>{const on=b.dataset.v===id;b.classList.toggle("sel",on);b.setAttribute("aria-checked",on)})}
+$("veh").innerHTML=VEH.map(v=>`<button class="opt" role="radio" data-v="${v.id}"><b>${v.n}</b><span class="note">${v.d}</span><span class="note">Est. cost: ${inr(v.p)}</span></button>`).join("");
+document.querySelectorAll("#veh .opt").forEach(b=>b.onclick=()=>{selVeh(b.dataset.v);if(S)calc()});
+document.querySelectorAll("#finb .chip").forEach(c=>c.onclick=()=>setFin(c.dataset.f));
+function setKm(v){v=Math.min(400,Math.max(1,+v||85));$("ck").value=Math.min(200,v);$("ckn").value=v}
+$("ck").oninput=()=>setKm($("ck").value);$("ckn").oninput=()=>{const v=+$("ckn").value;if(v>0)$("ck").value=Math.min(200,v)};
+$("cd").oninput=()=>{$("cdv").textContent=$("cd").value};
+function reset(){$("pp").value=100;$("el").value=8;$("mi").value=46;$("dp").value=20000;$("tn").value="36";$("ir").value=13.5;$("cs").value="";$("cd").value=26;$("cdv").textContent="26";setKm(85);selVeh("rt")}
+$("rst").onclick=reset;reset();
+$("city").onchange=()=>{$("city2").value=$("city").value};$("city2").onchange=()=>{$("city").value=$("city2").value};
+function parse(t){const s=t.toLowerCase();let km=(s.match(/(\d+(?:\.\d+)?)\s*(?:km|kilomet)/)||[])[1];
+let sp=(s.match(/(?:rs\.?|₹|rupees?)\s*(\d+(?:\.\d+)?)/)||s.match(/(\d+(?:\.\d+)?)\s*(?:rs|rupees|₹)/)||[])[1];
+let cc=(s.match(/(\d{2,3})\s*cc/)||[])[1];let pl=(["swiggy","zomato","zepto","blinkit","porter","shadowfax","amazon","flipkart"].find(p=>s.includes(p))||"");
+return{km:km&&+km,sp:sp&&+sp,cc:cc&&+cc,pl}}
+function fromText(){const p=parse($("txt").value);if(!p.km){$("err").textContent="Could not find your daily distance. Try: I ride 80 km a day and spend Rs. 180 on petrol.";return}
+setKm(p.km);$("cs").value=p.sp||"";const o=[...$("cp").options].find(x=>x.value.toLowerCase()===p.pl);if(o)$("cp").value=o.value;calc()}
+$("fillt").onclick=fromText;
+function calc(){const e=$("err"),km=+$("ckn").value;if(!km||km<=0||km>400){e.textContent="Enter a daily distance between 1 and 400 km.";return}e.textContent="";
+const days=+$("cd").value||26,pp=+$("pp").value||100,el=+$("el").value,wh=+$("wh").value,mi=+$("mi").value||46,rc=+$("rc").value||0,sb=+$("sb").value||0,dp=+$("dp").value||0,ten=+$("tn").value,rt=+$("ir").value||0;
+const sp=+$("cs").value,est=!sp,petrol=sp||km/mi*pp,fixed=km*wh/1000*el,swap=km/96*40,co2d=petrol/pp*2.31-km*wh/1000*.71;
+const mk=c=>{const d=petrol-c,net=Math.max(0,rc-sb);return{cost:c,d,m:d*days,y:d*days*12,pay:d>0&&net>0?net/(d*days):null}};
+let emi=0;if(fin==="loan"){const P=Math.max(0,rc-sb-dp),r=rt/1200;emi=r?P*r*Math.pow(1+r,ten)/(Math.pow(1+r,ten)-1):P/ten}
+S={p:{km,pl:$("cp").value},est,petrol,fixed:mk(fixed),swap:mk(swap),co2y:co2d*days*12,rc,sb,emi,fin,ten,days,city:$("city").value,vm,veh:VEH.find(x=>x.id===vm).n};show()}
+function show(){const{p,est,petrol,fixed,swap,co2y,rc,sb,emi,fin,ten,days,vm,veh}=S;const modes=[];
+if(vm!=="sw")modes.push(["Fixed battery (home charging)",fixed,"fixed"]);if(vm!=="sc")modes.push(["Swap battery (Rs. 40 per ~96 km)",swap,"swap"]);
+const best=modes.reduce((a,b)=>b[1].m>a[1].m?b:a),B=best[1];
+const col=m=>{const o=m[1],w=m===best&&modes.length>1,net=Math.max(0,rc-sb);return`<div class="card ${w?"win":""}"><h3>${m[0]}${w?' <span class="tag">Higher savings</span>':""}</h3><div class="lbl">Net take-home impact a month</div><div class="big">${inr(o.m)}</div>
+<p class="note">Electric cost ${inr(o.cost)} a day against petrol ${inr(petrol)} a day.</p><p>Daily <b>${inr(o.d)}</b>, yearly <b>${inr(o.y)}</b>.</p>${fin==="loan"?`<p>EMI ${inr(emi)} for ${ten} months. Cash left after EMI: <b>${inr(o.m-emi)}</b> a month.</p>`:""}
+<p>Payback on ${inr(net)}${sb?" after subsidy":""}: <b>${o.pay?o.pay.toFixed(1)+" months":"no payback at these numbers"}</b></p></div>`};
+$("res").innerHTML=`<div class="card"><h3>Your result</h3><p>${p.km} km a day, ${days} days a month, ${p.pl}. Petrol: <b>${inr(petrol)}</b> a day${est?" (estimated from distance and mileage)":""}.</p><p class="note">${veh}${sb?", subsidy of "+inr(sb):""}, ${fin==="loan"?"loan EMI":"full cash buy"}.</p></div>
+<div class="grid">${modes.map(col).join("")}</div>
+<div class="card"><h3>CO2 saved</h3><div class="big">${Math.max(0,co2y).toFixed(0)} kg a year</div><p class="note">Petrol 2.31 kg CO2 per litre against 0.71 kg per kWh grid mix.</p></div>
+<div class="card"><h3>Shareable savings card</h3><canvas id="cv" width="1080" height="1080"></canvas><p class="note">Press and hold (or right-click) the card to save it, then share on WhatsApp or Instagram.</p></div>`;card(B,best[2])}
+function card(B,mode){const c=$("cv"),x=c.getContext("2d");const g=x.createLinearGradient(0,0,1080,1080);g.addColorStop(0,"#0f3d29");g.addColorStop(1,"#1f7a4d");x.fillStyle=g;x.fillRect(0,0,1080,1080);
+x.fillStyle="#fff";x.font="700 52px system-ui,sans-serif";x.fillText("⚡ GigEV",70,120);x.font="400 34px system-ui,sans-serif";x.globalAlpha=.8;x.fillText("My EV savings",70,175);x.globalAlpha=1;
+x.font="700 150px system-ui,sans-serif";x.fillText(inr(B.m).replace("Rs. ","Rs."),70,420);x.font="400 40px system-ui,sans-serif";x.fillText("saved every month",70,480);
+x.font="600 48px system-ui,sans-serif";x.fillText(inr(B.d)+" a day",70,620);x.fillText(inr(B.y)+" a year",70,690);
+x.fillText("Payback: "+(B.pay?B.pay.toFixed(1)+" months":"n/a"),70,760);x.fillText(Math.max(0,S.co2y).toFixed(0)+" kg CO2 saved a year",70,830);
+x.font="400 30px system-ui,sans-serif";x.globalAlpha=.8;x.fillText((mode==="swap"?"Battery swap":"Home charging")+" mode, "+S.city,70,900);x.fillText("Check yours: GigEV by Revitalize Mobility",70,990);x.globalAlpha=1}
+$("go").onclick=calc;
+const SUBS=[
+{n:"PM e-DRIVE",w:"Central",s:"Active",cov:"Demand incentive on new electric two-wheelers registered from 1 Apr 2025 to 31 Mar 2028. Fund-limited, so it can close early.",amt:"Rs. 2,500 per kWh of battery capacity, capped at Rs. 5,000 per vehicle (or 15% of ex-factory price, whichever is lower).",el:"New e-2W with an ex-factory price up to Rs. 1.5 lakh. Claimed through the dealer when you buy. Not confirmed for retrofits.",l:"https://pmedrive.heavyindustries.gov.in",ln:"PM e-DRIVE portal (Ministry of Heavy Industries)"},
+{n:"Telangana EV Policy 2023",w:"Telangana",s:"Active to 31 Dec 2026",cov:"100% waiver of road tax and registration fee for electric vehicles registered in Telangana, with no cap on the number of vehicles.",amt:"Rs. 0 road tax and Rs. 0 registration fee. This is a tax waiver, not a cash subsidy.",el:"Vehicle registered in Telangana on or before 31 Dec 2026. Applied at the RTO during registration.",l:"https://transport.telangana.gov.in",ln:"Telangana Transport Department"},
+{n:"DIC Warangal MSME schemes",w:"Warangal district",s:"Ask the DIC",cov:"Telangana MSME incentives such as T-IDEA capital and interest subsidies, and the central PMEGP credit-linked subsidy, handled through the District Industries Centre.",amt:"Percentage-based and varies by scheme and category. PMEGP gives up to 35% credit-linked subsidy. Confirm the exact figure for your case with DIC Warangal.",el:"Registered micro or small enterprise (Udyam). Suits fleet owners and retrofit workshops more than a rider buying one bike.",l:"https://ipass.telangana.gov.in",ln:"TG-iPASS (state MSME incentive applications)"},
+{n:"FAME-II",w:"Central",s:"Closed",cov:"Earlier central EV demand incentive.",amt:"None for new purchases.",el:"Ended in 2024 and was replaced by newer schemes.",l:"https://pmedrive.heavyindustries.gov.in",ln:"See PM e-DRIVE"}];
+function rsubs(){const fl=$("sf").value,q=$("ss").value.toLowerCase();$("subs").innerHTML=SUBS.filter(s=>(!fl||s.w===fl)&&(!q||(s.n+s.cov+s.amt).toLowerCase().includes(q))).map(s=>`<div class="card"><h3>${s.n} <span class="tag ${s.s==="Closed"?"x":""}">${s.s}</span><span class="tag">${s.w}</span></h3><p><b>What it covers:</b> ${s.cov}</p><p><b>Subsidy amount:</b> ${s.amt}</p><p class="note"><b>Who qualifies:</b> ${s.el}</p><p><a href="${s.l}" target="_blank" rel="noopener">Apply or check: ${s.ln}</a></p></div>`).join("")||'<p class="note">No schemes match.</p>'}$("sf").onchange=$("ss").oninput=rsubs;rsubs();
+function est(){const k=+$("kwh").value,p=+$("exp").value;$("est").textContent=p>150000?"Not eligible: price is above Rs. 1.5 lakh":inr(Math.min(2500*k,5000,0.15*p))+" PM e-DRIVE incentive";const d=Math.ceil((new Date("2026-12-31")-new Date())/864e5);$("tgd").textContent=d>0?"Telangana road tax waiver ends in "+d+" days (31 Dec 2026). Check for a renewal.":"The Telangana waiver period has ended. Check the Transport Department for a renewal."}
+$("kwh").oninput=$("exp").oninput=est;est();
+const V=[["TS09 EV 1021","Ravi K.",92,1180,88],["TS09 EV 1022","Anil M.",78,1020,71],["TS09 EV 1023","Sai T.",110,1420,84],["TS09 EV 1024","Imran S.",64,860,55],["TS09 EV 1025","Lakshmi D.",85,1110,91],["TS09 EV 1026","Kiran B.",96,1260,66],["TS09 EV 1027","Venu R.",74,980,82],["TS09 EV 1028","Mahesh P.",101,1340,58]];
+function renderFleet(){let tk=0,sv=0,due=0,co=0,rows=V.map(v=>{const[id,r,km,e,b]=v,en=km*0.176,mg=e-en-(km/96*0),st=b>=80?"g":b>=60?"a":"r",pe=km/45*100,sav=pe-en;tk+=km;sv+=sav;co+=(km/45*100/100*2.31-km*.022*.71);if(b<70)due++;return{id,r,km,e,en,mg,b,st,sav}});
+const best=[...rows].sort((a,b)=>b.mg-a.mg),w=best[0],l=best[best.length-1];
+const k=(t,v,s)=>`<div class="card"><div class="lbl">${t}</div><div class="big">${v}</div><div class="lbl">${s||""}</div></div>`;
+$("fsum").innerHTML=k("Daily savings vs petrol",inr(sv),"fleet total")+k("CO2 saved a day",co.toFixed(0)+" kg","fleet total")+k("Due for service",due+" vehicles","battery below 70%")+k("Highest margin",w.id,inr(w.mg)+" a day")+k("Lowest margin",l.id,inr(l.mg)+" a day");
+$("ft").innerHTML="<tr><th>Vehicle</th><th>Rider</th><th>Km/day</th><th>Energy</th><th>Earnings</th><th>Net margin</th><th>Battery</th></tr>"+rows.map(r=>`<tr><td>${r.id}</td><td>${r.r}</td><td>${r.km}</td><td>${inr(r.en)}</td><td>${inr(r.e)}</td><td>${inr(r.mg)}</td><td><span class="dot ${r.st}"></span>${r.b}%</td></tr>`).join("")}renderFleet();
+$("addv").onclick=()=>{if(V.length>=50)return;const r=a=>a[Math.floor(Math.random()*a.length)];V.push(["TS09 EV "+(1021+V.length),r(["Ramesh G.","Sneha P.","Farooq A.","Divya K.","Nagaraju S."]),60+Math.floor(Math.random()*55),900+Math.floor(Math.random()*550),55+Math.floor(Math.random()*40)]);renderFleet()};
+$("rstv").onclick=()=>{V.length=8;renderFleet()};
+function say(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("chat").appendChild(d);$("chat").scrollTop=1e9}
+function reply(q){const s=q.toLowerCase();if(!S)sync();
+const f=S.fixed,w=S.swap,b=f.m>=w.m?f:w,bn=f.m>=w.m?"fixed battery":"battery swap";
+if(/pay|back|break/.test(s))return`With ${bn}, you save about ${inr(b.m)} a month, so the ${inr(S.rc)} retrofit pays back in ${b.pay?b.pay.toFixed(1):"n/a"} months.`;
+if(/swap|fixed|battery|charg/.test(s))return`Fixed battery costs ${inr(f.cost)} a day in electricity (${inr(f.m)} saved a month). Swap costs ${inr(w.cost)} a day (${inr(w.m)} saved a month). Fixed is cheaper per km but needs home charging time. Swap is faster to refill.`;
+if(/subsid|scheme|gov|policy/.test(s))return"For "+S.city+": check the Telangana EV Policy 2023 for road tax and registration waivers, PM e-DRIVE for the central incentive, and the DIC office for MSME support. Open the Subsidies tab for details. Confirm amounts at the official source.";
+if(/co2|carbon|green|environment/.test(s))return`You would avoid about ${Math.max(0,S.co2y).toFixed(0)} kg of CO2 a year.`;
+if(/loan|emi|finance/.test(s))return`A rough check: ${bn} saves ${inr(b.m)} a month. If your EMI is below that, the fuel saving covers it. Ask lenders about gig-worker EV loans.`;
+return`Based on ${S.p.km} km a day, you save about ${inr(b.d)} a day (${inr(b.y)} a year) with ${bn}. Ask about payback, swap vs fixed, subsidies or CO2.`}
+function ask(q){q=q.trim();if(!q)return;say(q,"u");$("q").value="";say(reply(q),"b")}
+$("ask").onclick=()=>ask($("q").value);$("q").onkeydown=e=>{if(e.key==="Enter")ask($("q").value)};
+document.querySelectorAll("[data-q]").forEach(c=>c.onclick=()=>ask(c.dataset.q));
+let plat="Zomato";
+["Zomato","Swiggy","Zepto","Blinkit","Shadowfax","Porter"].forEach(p=>{const b=document.createElement("button");b.className="chip"+(p===plat?" on":"");b.textContent=p;b.onclick=()=>{plat=p;document.querySelectorAll("#plats .chip").forEach(c=>c.classList.toggle("on",c===b))};$("plats").appendChild(b)});
+function quick(){const k=+$("qk").value,pp=+$("pp").value,mi=+$("mi").value||45,wh=+$("wh").value,el=+$("el").value,pc=pp/mi,ec=wh*el/1000;$("kmv").textContent=k;$("qs").textContent=inr(k*26*(pc-ec))+" a month";$("qd").textContent="Petrol "+inr(k*26*pc)+" against electricity "+inr(k*26*ec)+" at "+k+" km a day.";
+const d=85*26;$("cmpn").textContent="Benchmark: 85 km a day over 26 days ("+d+" km a month). Rates are editable in the calculator.";
+const m=[["Petrol 110cc scooter","Legacy option",pc,"High running cost"],["Fixed battery EV (home charging)","Highest savings",ec,"Best if you can charge at home"],["Battery swap (Rs. 40 per ~96 km)","Zero downtime",40/96,"Swap in minutes, no charging wait"]];
+$("cmp").innerHTML=m.map((x,i)=>`<div class="card ${i==1?"win":""}"><span class="tag">${x[1]}</span><h3>${x[0]}</h3><div class="big">Rs. ${x[2].toFixed(2)} <span class="lbl">per km</span></div><p>${inr(d*x[2])} a month</p><p class="note">${x[3]}</p></div>`).join("")}
+$("qk").oninput=quick;["pp","mi","wh","el"].forEach(i=>$(i).addEventListener("input",quick));
+$("qt").onclick=()=>{setKm($("qk").value);$("cp").value=plat;go("calc");calc()};quick();
+function sync(){$("pkv").textContent=$("pk").value;setKm($("pk").value);$("cp").value=$("pf").value;calc()}
+$("pk").oninput=$("pf").onchange=sync;
+calc();
+</script></body></html>
