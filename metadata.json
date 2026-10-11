@@ -1,0 +1,6 @@
+{
+  "name": "GigEV — Gig Worker EV Financial Intelligence Platform",
+  "description": "Revitalize Mobility's EV financial intelligence platform for Indian gig delivery workers, EV drivers, and fleet owners. Features interactive savings calculator, subsidy explorer, fleet analytics, and AI financial advisor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
